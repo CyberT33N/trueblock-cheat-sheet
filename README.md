@@ -19,4 +19,31 @@ mkdir build && cd build
 ../scripts/go-work-sync.sh
 cmake ../src
 make
+
+# add bin to path
+sudo gedit ~/.zshrc  
+export PATH="$PATH:/home/usrname/Projects/trueblocks-core/bin"
+
+# Get config path
+chifra config --paths
+
+# added config
+sudo gedit /home/usrname/.local/share/trueblocks/trueBlocks.toml
+```
+- Edit this file and locate the [chains.mainnet] section. Add a valid RPC endpoint. If you don’t know what this means, search Google.
+      [chains.mainnet]
+      ...
+      rpcProvider = "http://localhost:8545"
+      # https://mainnet.infura.io/v3/xxxxxxxxxxxxxxxxx
+      ...
+  
+- If you wish to use the --articulate feature (you probably do), add an API key to the following section:
+    [keys.etherscan]
+    ...
+    apiKey = "<your Etherscan api key>"   # optional
+    ...
+
+- Run to verify if everything works:
+```
+chifra blocks 12
 ```
